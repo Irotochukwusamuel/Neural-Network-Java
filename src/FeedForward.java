@@ -30,6 +30,6 @@ public class FeedForward {
     }
 
     public double loss(double output, double true_value){
-        return  0.5 * Math.pow(2, (output - true_value));
+        return  0.5 * Math.pow((output - true_value), 2);
     }
 }
