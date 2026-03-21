@@ -16,6 +16,8 @@ public class Test {
 
         FeedForward forward = new FeedForward();
         Activation relu = new Relu();
+        Backpropagation backprop = new Backpropagation();
+
         double[] z = forward.feedforward(inputs, weights, bias, relu); // feedforward
         double output = forward.output(z, output_weights, output_bias); // output layer calculation.
         double loss = forward.loss(output, true_value); // Calculate Loss

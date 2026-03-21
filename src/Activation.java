@@ -1,4 +1,4 @@
-abstract class Activation {
+public abstract class Activation {
     public abstract double function(double x);
 }
 

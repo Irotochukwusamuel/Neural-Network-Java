@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class FeedForward {
     public double[] feedforward(double[] inputs, double[][] weights, double[] bias, Activation activation){
 
@@ -21,6 +19,11 @@ public class FeedForward {
     }
 
     public double output(double[] weights, double[] output_w, double output_bias){
+
+        if(weights.length != output_w.length){
+            throw new IllegalArgumentException("Output weights and z computed weights needs to bed same size");
+        }
+
         double result = 0;
         for(int i = 0; i < weights.length; i++ ){
            result += weights[i] * output_w[i];
