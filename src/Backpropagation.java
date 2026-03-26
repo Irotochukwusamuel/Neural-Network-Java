@@ -8,10 +8,10 @@ public class Backpropagation {
         return predicted_value - true_value;
     }
 
-    public double[] gradient_output_weights(double output_gradient, double[] weights){
-        double[] result = new double[weights.length];
-        for(int i = 0; i < weights.length; i++){
-            result[i] = output_gradient * weights[i];
+    public double[] gradient_output_weights(double output_gradient, double[] z){
+        double[] result = new double[z.length];
+        for(int i = 0; i < z.length; i++){
+            result[i] = output_gradient * z[i];
         }
         return result;
     }
@@ -38,9 +38,24 @@ public class Backpropagation {
         return results;
     }
 
-    public double weights_update(){
+    public double[]  update_output_weights(double[] gradient_output_weights, double[] output_weights){
+        for(int i = 0; i < output_weights.length; i++){
+            output_weights[i] = output_weights[i] - (this.learning_rate * gradient_output_weights[i]);
+        }
 
+        return output_weights;
     }
+
+    public double[][] update_weights(double[][] gradients_hidden_Layer, double[][] weights){
+        for (int b = 0; b < gradients_hidden_Layer.length; b++) {
+            for (int i = 0; i < weights.length; i++) {
+                weights[b][i] = weights[b][i] - (this.learning_rate * gradients_hidden_Layer[b][i]);
+            }
+        }
+
+        return weights;
+    }
+
 
 
 
