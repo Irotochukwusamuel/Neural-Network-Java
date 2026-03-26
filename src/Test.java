@@ -21,8 +21,9 @@ public class Test {
         double[] z = forward.feedforward(inputs, weights, bias, relu); // feedforward
         double output = forward.output(z, output_weights, output_bias); // output layer calculation.
         double loss = forward.loss(output, true_value); // Calculate Loss
+        double delta = backprop.output_gradient(output, true_value);
 
-        System.out.println(Double.toString(loss));
+        System.out.println(Double.toString(delta));
 
     }
 }

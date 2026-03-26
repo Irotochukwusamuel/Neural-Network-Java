@@ -1,5 +1,9 @@
 public class Backpropagation {
 
+    double[][] weights;
+    double[] bias;
+    double learning_rate = 0.5;
+
     public double output_gradient(double predicted_value, double true_value){
         return predicted_value - true_value;
     }
@@ -23,12 +27,19 @@ public class Backpropagation {
 
     public double[][] gradients_hidden_Layer(double[] backdrop_hidden_layer, double[] inputs){
         double[][] results = new double[backdrop_hidden_layer.length][inputs.length];
-        
-        for (int i = 0; i < backdrop_hidden_layer.length; i++) {
-            
+        double[] bias = new double[inputs.length];
+        for (int b = 0; b < backdrop_hidden_layer.length; b++) {
+            for (int i = 0; i < inputs.length; i++) {
+                results[b][i] = backdrop_hidden_layer[b] * inputs[i];
+            }
+            bias[b] = backdrop_hidden_layer[b];
         }
 
         return results;
+    }
+
+    public double weights_update(){
+
     }
 
 
