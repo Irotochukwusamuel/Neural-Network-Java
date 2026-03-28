@@ -30,13 +30,14 @@ public class Test {
             }
             double delta = backprop.output_gradient(output, true_value);
             double[] gradient_output_weights = backprop.gradient_output_weights(delta, z);
-            double[] backdrop_hidden_layer = backprop.backdrop_hidden_layer(delta, output_weights, z);
-            double[][] gradients_hidden_Layer = backprop.gradients_hidden_Layer(backdrop_hidden_layer, inputs);
+            double[] backprop_hidden_layer = backprop.backdrop_hidden_layer(delta, output_weights, z);
+            double[][] gradients_hidden_Layer = backprop.gradients_hidden_Layer(backprop_hidden_layer, inputs);
 
             // updating the weights
-            output_weights = backprop.update_output_weights(gradient_output_weights, output_weights);
-            weights = backprop.update_weights(gradients_hidden_Layer, weights);
-            System.err.println("weights " + java.util.Arrays.deepToString(weights));
+            backprop.update_output_weights(gradient_output_weights, output_weights);
+            backprop.update_weights(gradients_hidden_Layer, weights);
+            backprop.update_bias(backprop_hidden_layer, bias);
+            backprop.update_output_bias(delta, output_bias);
         }
 
 
